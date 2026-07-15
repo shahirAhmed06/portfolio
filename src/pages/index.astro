@@ -14,10 +14,10 @@ const featured = featuredSlugs
   .filter((p): p is NonNullable<typeof p> => p !== undefined);
 
 const roles = [
-  { title: 'Undergraduate Researcher',     org: 'MICROTECHNOLOGY LAB, MSU',  period: '2025—' },
-  { title: 'Undergraduate Researcher',     org: 'RF-PHOTONICS LAB, MSU',     period: '2026—' },
-  { title: 'Technical Director',           org: 'IEEE MSU STUDENT BRANCH',   period: '2026—' },
-  { title: 'Vehicle Controls & Sensing',   org: 'MSU SOLAR CAR RACING',      period: '2025—' },
+  { title: 'Undergraduate Researcher',     org: 'MICROTECHNOLOGY LAB, MSU',  period: '2025—', href: '/research/microtechnology-lab' },
+  { title: 'Undergraduate Researcher',     org: 'RF-PHOTONICS LAB, MSU',     period: '2026—', href: '/research/rf-photonics-lab' },
+  { title: 'Vehicle Controls & Sensing',   org: 'MSU SOLAR CAR RACING',      period: '2025—', href: '/involvement/solar-car-racing' },
+  { title: 'Technical Director',           org: 'IEEE MSU STUDENT BRANCH',   period: '2026—', href: '/involvement/ieee-msu' },
 ];
 ---
 
@@ -43,7 +43,7 @@ const roles = [
     <div class="mt-10 grid gap-10 md:grid-cols-2">
       <p class="font-mono text-lede text-fg-secondary m-0 max-w-ch60 text-pretty reveal-item" style="--i: 2;">
         Undergraduate electrical engineer at Michigan&nbsp;State, working across
-        microelectronics, embedded systems, digital design, and RF — from
+        microelectronics, embedded systems, digital design, and RF, from
         electrochemical sensing to FPGAs and software-defined radio.
       </p>
 
@@ -53,19 +53,23 @@ const roles = [
         class="list-none m-0 p-0 flex flex-col gap-4"
       >
         {roles.map((role, i) => (
-          <li class="flex items-baseline gap-4 reveal-item" style={`--i: ${3 + i};`}>
-            <span
-              class="font-mono text-coord text-accent flex-shrink-0"
-              aria-hidden="true"
-            >
-              {String(i + 1).padStart(2, '0')}
-            </span>
-            <div class="flex-1 min-w-0">
-              <div class="font-mono text-meta text-fg">{role.title}</div>
-              <div class="font-mono text-coord text-fg-muted mt-1">
-                {role.org} · {role.period}
+          <li class="reveal-item" style={`--i: ${3 + i};`}>
+            <a href={role.href} class="group flex items-baseline gap-4 no-underline">
+              <span
+                class="font-mono text-coord text-accent flex-shrink-0"
+                aria-hidden="true"
+              >
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <div class="flex-1 min-w-0">
+                <div class="font-mono text-meta text-fg transition-colors group-hover:text-accent">
+                  {role.title}
+                </div>
+                <div class="font-mono text-coord text-fg-muted mt-1">
+                  {role.org} · {role.period}
+                </div>
               </div>
-            </div>
+            </a>
           </li>
         ))}
       </ol>

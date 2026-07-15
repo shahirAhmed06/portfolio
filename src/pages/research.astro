@@ -6,7 +6,12 @@ import HeroMedia from '../components/HeroMedia.astro';
 import { getCollection } from 'astro:content';
 
 const all = await getCollection('research', ({ data }) => !data.draft);
-const items = all.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Manually ordered — most relevant work first, independent of entry date
+const order = ['rf-photonics-lab', 'microtechnology-lab', 'uuraf-2026-lightning-connectors'];
+const items = order
+  .map((slug) => all.find((item) => item.slug === slug))
+  .filter((item): item is NonNullable<typeof item> => item !== undefined);
 
 const typeLabels: Record<'lab-work' | 'conference' | 'paper-reading', string> = {
   'lab-work': 'LAB WORK',
@@ -67,14 +72,5 @@ const typeLabels: Record<'lab-work' | 'conference' | 'paper-reading', string> = 
         </a>
       ))}
     </div>
-
-    <section class="max-w-ch60">
-      <h2 class="font-mono text-micro text-fg-muted uppercase m-0 mb-4">
-        / INTERESTS
-      </h2>
-      <p class="font-mono text-body text-fg-secondary m-0">
-        RF-photonics, photonic integrated circuits, and microelectronics.
-      </p>
-    </section>
   </div>
 </Layout>

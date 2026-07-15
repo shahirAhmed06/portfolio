@@ -6,7 +6,12 @@ import HeroMedia from '../../components/HeroMedia.astro';
 import { getCollection } from 'astro:content';
 
 const all = await getCollection('involvement', ({ data }) => !data.draft);
-const items = all.sort((a, b) => b.data.startDate.getTime() - a.data.startDate.getTime());
+
+// Manually ordered — independent of start date
+const order = ['solar-car-racing', 'ieee-msu'];
+const items = order
+  .map((slug) => all.find((item) => item.slug === slug))
+  .filter((item): item is NonNullable<typeof item> => item !== undefined);
 
 function period(start: Date, end: Date | null) {
   const from = start.getFullYear();

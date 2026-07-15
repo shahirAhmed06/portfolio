@@ -3,14 +3,19 @@ title: "About"
 layout: "../layouts/Page.astro"
 ---
 
-I'm a first-year electrical engineering student at Michigan State, and most of what I do sits between a sensor and the software reading it. In the Microtechnology Lab I work on electrochemical detection of heavy-metal ions — cadmium, lead, mercury — at low concentrations in buffer and soil solutions, running cyclic and differential-pulse voltammetry on carbon-fiber electrodes and helping develop an affordable microfluidic potentiostat built around a Teensy and a custom analog front end. Outside the lab, I serve as Technical Director for the IEEE MSU Student Branch, where I design boards and run workshops that take other undergraduates through schematic capture, layout, SMD assembly, and firmware in a single session. I also contribute to MSU Solar Car Racing on the Vehicle Controls and Sensing subteam — schematic capture, parts selection, and fine-pitch assembly on 4-layer impedance-controlled boards for the safety-critical control systems. Coursework is the foundation under all of it; the projects are where I find out which parts of the foundation I actually understand.
+I'm an electrical engineering student at Michigan State. Almost everything I work on lives close to the hardware: analog front ends, the firmware sampling them, and the unglamorous work of turning a physical signal into a measurement you can actually believe.
 
-This summer I'll join Professor Thomas Clark's photonics lab, which is a deliberate move toward the questions I'm most drawn to. I want to concentrate in microelectronics and work at the edge where RF and photonics meet — high-speed mixed-signal design, integrated photonic front ends, the electronics that sit one layer away from a physical measurement. The trajectory I'm planning for is a PhD in electrical engineering, and the near-term work is about being specific enough, and honest enough about my gaps, to earn the research problems I want to be useful on.
+Most of my time goes to two labs. In Dr. Wen Li's Microtechnology Lab I detect heavy metals at trace concentrations using voltammetry. I've run more than a thousand of these experiments on carbon-fiber and boron-doped-diamond electrodes, but most of my effort goes into the instrument rather than the chemistry: writing the Teensy firmware, debugging the potentiostat boards, and pushing a low-cost microfluidic version toward continuous sensing at 10 ppb. Trace measurement is unforgiving. At those currents, noise and settling time and ground routing stop being details and start deciding whether the reading exists at all.
 
+The other lab is Professor Thomas Clark's RF-photonics group, where I build the digital-communications chain on GNU Radio and a USRP B210. So far that means pulse shaping, symbol-timing recovery, and modulation up through 256-QAM, and I'm working toward OFDM now. Timing recovery is the part that taught me the most, mostly by going wrong in ways that weren't obvious.
+
+I'm on two teams as well. On MSU Solar Car Racing I'm on the Vehicle Controls and Sensing subteam, doing PCB work and STM32 firmware for the lighting and CAN signals now running on the car. For the IEEE MSU Student Branch I'm the technical director, which mostly means designing boards and teaching workshops that get other undergrads from a blank schematic to working firmware in a single session.
+
+Outside all of that I love building. So far I have a RISC-V processor in Verilog that runs compiled C on an FPGA, a Game Boy emulator accurate enough to pass the timing-test ROMs, a fixed-point noise-cancellation engine, and a few others. Some work better than others, but as long as I can learn something I consider that a sucess.
 ---
 
 **Contact**
 
 - [ahmeds2609@gmail.com](mailto:ahmeds2609@gmail.com)
-- GitHub — [github.com/your-handle](https://github.com/your-handle)
-- LinkedIn — [linkedin.com/in/your-handle](https://linkedin.com/in/your-handle)
+- GitHub — [github.com/shahirAhmed06](https://github.com/shahirAhmed06)
+- LinkedIn — [linkedin.com/in/ahmeds60](https://linkedin.com/in/ahmeds60)

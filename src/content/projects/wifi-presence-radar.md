@@ -1,6 +1,6 @@
 ---
 title: "Motion Detection Over WiFi"
-date: 2026-06-25
+date: 2026-07-05
 status: "in-progress"
 role: "everything — firmware, host detector"
 tools: ["ESP32", "C", "Python"]

@@ -1,5 +1,5 @@
 ---
-title: "Heavy Metal Ion Sensing in the Microtechnology Lab"
+title: "Microtechnology Lab"
 date: 2025-09-01
 type: "lab-work"
 summary: "Electrochemical detection of heavy metal ions, and the development of a low-cost microfluidic potentiostat for continuous sensing down to 10 ppb."

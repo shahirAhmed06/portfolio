@@ -1,5 +1,5 @@
 ---
-title: "Building Digital Links in the RF-Photonics Lab"
+title: "RF-Photonics Lab"
 date: 2026-05-11
 type: "lab-work"
 summary: "Learning digital communications by building the receive chain end to end — pulse shaping, timing recovery, QPSK through 256-QAM, and OFDM — on GNU Radio and a USRP B210."
