@@ -5,13 +5,13 @@ import CoordLine from '../../components/CoordLine.astro';
 import ProjectBlock from '../../components/ProjectBlock.astro';
 import { getCollection } from 'astro:content';
 
-const allProjects = await getCollection('projects');
+const allProjects = await getCollection('projects', ({ data }) => !data.draft);
 const projects = allProjects.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <Layout
   title="Projects — Shahir Ahmed"
-  description="PCB design, embedded firmware, and hardware projects by Shahir Ahmed."
+  description="Digital design, embedded firmware, SDR, and PCB projects by Shahir Ahmed."
 >
   <TickRule />
 
@@ -35,6 +35,7 @@ const projects = allProjects.sort((a, b) => b.data.date.getTime() - a.data.date.
           role={project.data.role}
           tools={project.data.tools}
           date={project.data.date}
+          repo={project.data.repo}
           headingLevel={2}
           href={`/projects/${project.slug}`}
           hero={project.data.media[0]}

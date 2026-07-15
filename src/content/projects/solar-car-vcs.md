@@ -5,6 +5,7 @@ status: "ongoing"
 role: "Vehicle Controls & Sensing · contributor"
 tools: ["Altium Designer"]
 summary: "Contributing to 4-layer, impedance-controlled PCBs for MSU Solar Car Racing — my first exposure to signal integrity on a real, safety-critical system."
+draft: true
 ---
 
 Contributing to the 4-layer, impedance-controlled boards that run MSU Solar Car Racing's vehicle controls — my first exposure to signal integrity on a real, safety-critical system.

@@ -2,8 +2,8 @@
 import Badge from './Badge.astro';
 import HeroMedia from './HeroMedia.astro';
 
-interface HeroImage { type: 'image'; src: string; alt: string }
-interface HeroVideo { type: 'video'; src: string; poster?: string; alt: string }
+interface HeroImage { type: 'image'; src: string; alt: string; caption?: string }
+interface HeroVideo { type: 'video'; src: string; poster?: string; alt: string; caption?: string }
 type Hero = HeroImage | HeroVideo;
 
 interface Props {
@@ -14,6 +14,7 @@ interface Props {
   role: string;
   tools: string[];
   date: Date;
+  repo?: string;
   revealIndex?: number;
   headingLevel?: 2 | 3;
   href?: string;
@@ -29,6 +30,7 @@ const {
   role,
   tools,
   date,
+  repo,
   revealIndex,
   headingLevel = 3,
   href,
@@ -40,7 +42,12 @@ const num = String(index).padStart(2, '0');
 const Heading = headingLevel === 2 ? 'h2' : 'h3';
 const Wrapper = href ? 'a' : 'article';
 
-const gridCols = showHero
+// Strip the scheme so the meta line reads `github.com/user/repo`, matching
+// the bare monospace style of the ROLE / TOOLS entries beside it.
+const repoLabel = repo?.replace(/^https?:\/\//, '');
+
+const renderHero = showHero && !!hero;
+const gridCols = renderHero
   ? 'grid-cols-[auto_1fr] md:grid-cols-[140px_minmax(0,_1fr)_280px]'
   : 'grid-cols-[auto_1fr] md:grid-cols-[160px_1fr]';
 ---
@@ -94,10 +101,11 @@ const gridCols = showHero
     <div class="meta-cluster mt-5">
       <span>ROLE / {role}</span>
       <span>TOOLS / {tools.join(', ')}</span>
+      {repoLabel && <span>REPO / {repoLabel}</span>}
     </div>
   </div>
 
-  {showHero && (
+  {renderHero && (
     <div class="col-span-2 md:col-span-1 md:self-start">
       <HeroMedia hero={hero} aspectRatio="16/9" label="MEDIA" preferStill={true} />
     </div>

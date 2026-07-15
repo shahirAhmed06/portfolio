@@ -5,7 +5,7 @@ import CoordLine from '../components/CoordLine.astro';
 import HeroMedia from '../components/HeroMedia.astro';
 import { getCollection } from 'astro:content';
 
-const all = await getCollection('research');
+const all = await getCollection('research', ({ data }) => !data.draft);
 const items = all.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const typeLabels: Record<'lab-work' | 'conference' | 'paper-reading', string> = {
@@ -35,7 +35,10 @@ const typeLabels: Record<'lab-work' | 'conference' | 'paper-reading', string> = 
       {items.map((item) => (
         <a
           href={`/research/${item.slug}`}
-          class="group no-underline grid gap-6 md:gap-8 md:grid-cols-[minmax(0,_1fr)_280px] border-b border-rule py-10"
+          class:list={[
+            'group no-underline grid gap-6 md:gap-8 border-b border-rule py-10',
+            item.data.media[0] ? 'md:grid-cols-[minmax(0,_1fr)_280px]' : 'grid-cols-1',
+          ]}
         >
           <div class="min-w-0">
             <div class="font-mono text-micro text-fg-muted uppercase mb-4">
@@ -50,10 +53,17 @@ const typeLabels: Record<'lab-work' | 'conference' | 'paper-reading', string> = 
             <p class="font-mono text-lede text-fg-secondary m-0 max-w-ch60">
               {item.data.summary}
             </p>
+            {item.data.award && (
+              <div class="meta-cluster mt-5">
+                <span>AWARD / {item.data.award}</span>
+              </div>
+            )}
           </div>
-          <div class="md:self-start">
-            <HeroMedia hero={item.data.media[0]} aspectRatio="16/9" label="MEDIA" preferStill={true} />
-          </div>
+          {item.data.media[0] && (
+            <div class="md:self-start">
+              <HeroMedia hero={item.data.media[0]} aspectRatio="16/9" label="MEDIA" preferStill={true} />
+            </div>
+          )}
         </a>
       ))}
     </div>

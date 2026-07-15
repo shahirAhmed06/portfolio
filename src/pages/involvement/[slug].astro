@@ -1,0 +1,93 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TickRule from '../../components/TickRule.astro';
+import CoordLine from '../../components/CoordLine.astro';
+import HeroMedia from '../../components/HeroMedia.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const items = await getCollection('involvement', ({ data }) => !data.draft);
+  return items.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+interface Props { entry: CollectionEntry<'involvement'> }
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const { title, organization, role, location, startDate, endDate, summary, media } = entry.data;
+
+const period = endDate
+  ? `${startDate.getFullYear()}—${endDate.getFullYear()}`
+  : `${startDate.getFullYear()}—PRESENT`;
+
+function mediaLabel(i: number) {
+  return i === 0 ? 'HERO / MEDIA' : `MEDIA / ${String(i + 1).padStart(2, '0')}`;
+}
+---
+
+<Layout
+  title={`${title} — Shahir Ahmed`}
+  description={summary}
+>
+  <TickRule />
+
+  <div class="mx-auto max-w-container px-6 sm:px-8 pt-16 pb-28">
+    <div class="mb-10">
+      <a href="/involvement" class="btn-ghost">← BACK TO INVOLVEMENT</a>
+    </div>
+
+    <CoordLine page="/involvement" label="ROLE" />
+
+    <h1
+      class="font-display text-h1 text-fg m-0 mb-8 text-balance"
+      style="font-variation-settings: 'opsz' 72"
+    >
+      {title}<span class="text-accent">.</span>
+    </h1>
+
+    <div class:list={['detail-layout', { 'detail-layout--no-media': media.length === 0 }]}>
+      <div class="detail-main">
+        <p class="font-mono text-lede text-fg-secondary m-0 mb-8 max-w-ch60">
+          {summary}
+        </p>
+
+        <div class="meta-cluster mb-12">
+          <span>ROLE / {role}</span>
+          <span>ORG / {organization}</span>
+          <span>PERIOD / {period}</span>
+          <span>LOCATION / {location}</span>
+        </div>
+
+        <div class="content-prose max-w-ch60">
+          <Content />
+        </div>
+      </div>
+
+      {media.length > 0 && (
+        <aside class="detail-media flex flex-col gap-6">
+          {media.map((item, i) => (
+            <HeroMedia hero={item} aspectRatio="16/9" label={mediaLabel(i)} showCaption />
+          ))}
+        </aside>
+      )}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .detail-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  @media (min-width: 1024px) {
+    .detail-layout:not(.detail-layout--no-media) {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 400px;
+      column-gap: 3rem;
+      align-items: start;
+    }
+  }
+</style>

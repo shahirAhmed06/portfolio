@@ -5,6 +5,7 @@ status: "in-progress"
 role: "Hardware · firmware"
 tools: ["KiCad", "C"]
 summary: "A gesture-driven quadcopter prototype — IMU input on a wearable, onboard firmware parsing pose into flight commands."
+draft: true
 ---
 
 A gesture-controlled quadcopter prototype: the hand wears an IMU, and the drone takes the pose as a control input.

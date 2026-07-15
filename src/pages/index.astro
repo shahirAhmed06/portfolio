@@ -5,25 +5,20 @@ import CoordLine from '../components/CoordLine.astro';
 import ProjectBlock from '../components/ProjectBlock.astro';
 import { getCollection } from 'astro:content';
 
-const all = await getCollection('projects');
+const all = await getCollection('projects', ({ data }) => !data.draft);
 
 // Featured on homepage — order matches the selected-work direction in the design
-const featuredSlugs = ['imu-breakout', 'hand-controlled-drone', 'pedometer-workshop'];
+const featuredSlugs = ['gb-emulator', 'riscv-cpu', 'electrochemical-analyzer'];
 const featured = featuredSlugs
   .map((s) => all.find((p) => p.slug === s))
   .filter((p): p is NonNullable<typeof p> => p !== undefined);
 
 const roles = [
   { title: 'Undergraduate Researcher',     org: 'MICROTECHNOLOGY LAB, MSU',  period: '2025—' },
+  { title: 'Undergraduate Researcher',     org: 'RF-PHOTONICS LAB, MSU',     period: '2026—' },
   { title: 'Technical Director',           org: 'IEEE MSU STUDENT BRANCH',   period: '2026—' },
   { title: 'Vehicle Controls & Sensing',   org: 'MSU SOLAR CAR RACING',      period: '2025—' },
 ];
-
-const incomingRole = {
-  title: 'Undergraduate Researcher',
-  org: 'PHOTONICS LAB, PROF. CLARK',
-  period: 'SUMMER 2026',
-};
 ---
 
 <Layout title="Shahir Ahmed — Electrical Engineering at MSU">
@@ -47,13 +42,14 @@ const incomingRole = {
 
     <div class="mt-10 grid gap-10 md:grid-cols-2">
       <p class="font-mono text-lede text-fg-secondary m-0 max-w-ch60 text-pretty reveal-item" style="--i: 2;">
-        Undergraduate electrical engineer at Michigan&nbsp;State, working on
-        microelectronics, embedded systems, and electrochemical sensing.
+        Undergraduate electrical engineer at Michigan&nbsp;State, working across
+        microelectronics, embedded systems, digital design, and RF — from
+        electrochemical sensing to FPGAs and software-defined radio.
       </p>
 
       <ol
         role="list"
-        aria-label="Current and upcoming roles"
+        aria-label="Current roles"
         class="list-none m-0 p-0 flex flex-col gap-4"
       >
         {roles.map((role, i) => (
@@ -72,24 +68,6 @@ const incomingRole = {
             </div>
           </li>
         ))}
-
-        <li class="flex items-baseline gap-4 pt-4 border-t border-rule reveal-item" style="--i: 6;">
-          <span
-            class="font-mono text-coord text-accent flex-shrink-0"
-            aria-hidden="true"
-          >
-            04
-          </span>
-          <div class="flex-1 min-w-0">
-            <div class="flex flex-wrap items-center gap-3">
-              <span class="font-mono text-meta text-fg">{incomingRole.title}</span>
-              <span class="badge">INCOMING</span>
-            </div>
-            <div class="font-mono text-coord text-fg-muted tracking-[0.06em] mt-1">
-              {incomingRole.org} · {incomingRole.period}
-            </div>
-          </div>
-        </li>
       </ol>
     </div>
   </section>
@@ -130,6 +108,7 @@ const incomingRole = {
           role={project.data.role}
           tools={project.data.tools}
           date={project.data.date}
+          repo={project.data.repo}
           revealIndex={9 + i}
           href={`/projects/${project.slug}`}
         />

@@ -1,0 +1,83 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TickRule from '../../components/TickRule.astro';
+import CoordLine from '../../components/CoordLine.astro';
+import HeroMedia from '../../components/HeroMedia.astro';
+import { getCollection } from 'astro:content';
+
+const all = await getCollection('involvement', ({ data }) => !data.draft);
+const items = all.sort((a, b) => b.data.startDate.getTime() - a.data.startDate.getTime());
+
+function period(start: Date, end: Date | null) {
+  const from = start.getFullYear();
+  return end ? `${from}—${end.getFullYear()}` : `${from}—`;
+}
+---
+
+<Layout
+  title="Involvement — Shahir Ahmed"
+  description="Engineering teams and student organizations — MSU Solar Car Racing and the IEEE MSU Student Branch."
+>
+  <TickRule />
+
+  <div class="mx-auto max-w-container px-6 sm:px-8 pt-16 pb-28">
+    <CoordLine page="/involvement" />
+
+    <h1
+      class="font-display text-h1 text-fg m-0 mb-14 text-balance"
+      style="font-variation-settings: 'opsz' 72"
+    >
+      Involvement<span class="text-accent">.</span>
+    </h1>
+
+    <div class="border-t border-rule">
+      {items.map((item, i) => (
+        <a
+          href={`/involvement/${item.slug}`}
+          class:list={[
+            'group no-underline grid gap-6 md:gap-8 grid-cols-[auto_1fr] border-b border-rule py-10',
+            item.data.media[0] ? 'md:grid-cols-[140px_minmax(0,_1fr)_280px]' : 'md:grid-cols-[140px_minmax(0,_1fr)]',
+          ]}
+        >
+          <div class="flex flex-col gap-4 md:gap-5">
+            <span
+              class="font-display text-index text-accent leading-none"
+              style="font-variation-settings: 'opsz' 96, 'wdth' 85"
+              aria-hidden="true"
+            >
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <span class="font-mono text-micro uppercase text-fg-muted">
+              {period(item.data.startDate, item.data.endDate)}
+            </span>
+          </div>
+
+          <div class="min-w-0">
+            <div class="font-mono text-micro text-fg-muted uppercase mb-4">
+              / {item.data.role}
+            </div>
+            <h2
+              class="font-display text-h3 text-fg m-0 mb-3 text-balance transition-colors group-hover:text-accent"
+              style="font-variation-settings: 'opsz' 48"
+            >
+              {item.data.title}
+            </h2>
+            <p class="font-mono text-lede text-fg-secondary m-0 max-w-ch60">
+              {item.data.summary}
+            </p>
+            <div class="meta-cluster mt-5">
+              <span>ORG / {item.data.organization}</span>
+              <span>LOCATION / {item.data.location}</span>
+            </div>
+          </div>
+
+          {item.data.media[0] && (
+            <div class="col-span-2 md:col-span-1 md:self-start">
+              <HeroMedia hero={item.data.media[0]} aspectRatio="16/9" label="MEDIA" preferStill={true} />
+            </div>
+          )}
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

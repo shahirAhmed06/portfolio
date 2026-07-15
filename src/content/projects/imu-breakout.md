@@ -5,6 +5,13 @@ status: "complete"
 role: "PCB design"
 tools: ["Altium Designer"]
 summary: "A six-axis IMU breakout board designed end-to-end in Altium — schematic, layout, BOM."
+media:
+  - type: image
+    src: "/images/projects/imu-breakout/hero.jpg"
+    alt: ""
+  - type: image
+    src: "/images/projects/imu-breakout/2.jpg"
+    alt: ""
 ---
 
 A six-axis IMU breakout board — my first PCB taken end-to-end in Altium, from picking the sensor to routing the supply rails.

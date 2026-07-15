@@ -5,6 +5,7 @@ status: "complete"
 role: "Workshop lead · PCB design · BOM"
 tools: ["KiCad", "C"]
 summary: "A one-session IEEE MSU workshop taking undergrads from never-opened-KiCad to a soldered, flashed, working pedometer."
+draft: true
 ---
 
 A workshop for IEEE MSU where a room of undergrads went from never having opened KiCad to a soldered, flashed, working pedometer in a single session.
