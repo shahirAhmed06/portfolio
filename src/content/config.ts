@@ -6,6 +6,8 @@ const mediaItem = z.discriminatedUnion('type', [
     src: z.string(),
     alt: z.string(),
     caption: z.string().optional(),
+    aspect: z.string().optional(),
+    fit: z.enum(['cover', 'contain']).optional(),
   }),
   z.object({
     type: z.literal('video'),
@@ -13,6 +15,8 @@ const mediaItem = z.discriminatedUnion('type', [
     poster: z.string().optional(),
     alt: z.string(),
     caption: z.string().optional(),
+    aspect: z.string().optional(),
+    fit: z.enum(['cover', 'contain']).optional(),
   }),
 ]);
 

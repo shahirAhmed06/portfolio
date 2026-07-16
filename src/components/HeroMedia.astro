@@ -9,9 +9,11 @@ interface Props {
   label?: string;
   preferStill?: boolean;
   showCaption?: boolean;
+  fit?: 'cover' | 'contain';
 }
 
-const { hero, aspectRatio = '16/9', label = 'HERO', preferStill = false, showCaption = false } = Astro.props;
+const { hero, aspectRatio = '16/9', label = 'HERO', preferStill = false, showCaption = false, fit = 'cover' } = Astro.props;
+const fitClass = fit === 'contain' ? 'object-contain' : 'object-cover';
 
 type Resolved =
   | { kind: 'placeholder' }
@@ -57,7 +59,7 @@ const caption = showCaption ? hero?.caption : undefined;
       <img
         src={resolved.src}
         alt={resolved.alt}
-        class="w-full h-full object-cover"
+        class:list={['w-full h-full', fitClass]}
         loading="lazy"
       />
     )}
@@ -70,7 +72,7 @@ const caption = showCaption ? hero?.caption : undefined;
         playsinline
         preload="metadata"
         aria-label={resolved.alt}
-        class="w-full h-full object-cover"
+        class:list={['w-full h-full', fitClass]}
       ></video>
     )}
   </div>

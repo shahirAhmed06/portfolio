@@ -70,7 +70,7 @@ function mediaLabel(i: number) {
       {media.length > 0 && (
         <aside class="detail-media flex flex-col gap-6">
           {media.map((item, i) => (
-            <HeroMedia hero={item} aspectRatio="16/9" label={mediaLabel(i)} showCaption />
+            <HeroMedia hero={item} aspectRatio={item.aspect ?? '16/9'} fit={item.fit} label={mediaLabel(i)} showCaption />
           ))}
         </aside>
       )}

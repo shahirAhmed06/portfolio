@@ -66,7 +66,7 @@ const typeLabels: Record<'lab-work' | 'conference' | 'paper-reading', string> = 
           </div>
           {item.data.media[0] && (
             <div class="md:self-start">
-              <HeroMedia hero={item.data.media[0]} aspectRatio="16/9" label="MEDIA" preferStill={true} />
+              <HeroMedia hero={item.data.media[0]} aspectRatio={item.data.media[0].aspect ?? '16/9'} fit={item.data.media[0].fit} label="MEDIA" preferStill={true} />
             </div>
           )}
         </a>

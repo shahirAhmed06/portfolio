@@ -3,7 +3,23 @@ title: "RF-Photonics Lab"
 date: 2026-05-11
 type: "lab-work"
 summary: "Learning digital communications by building the receive chain end to end — pulse shaping, timing recovery, QPSK through 256-QAM, and OFDM — on GNU Radio and a USRP B210."
-media: []
+media:
+  - type: image
+    src: "/images/research/rf-photonics-lab/hero.png"
+    alt: "OFDM signal in loopback and on the spectrum analyzer, centered at 3000 MHz"
+    caption: "OFDM signal in loopback and on the spectrum analyzer, centered at 3000 MHz"
+    aspect: "2072 / 788"
+  - type: video
+    src: "/images/research/rf-photonics-lab/2.mp4"
+    alt: "Setting modulation scheme in a CLI which communicates the parameters to the b210 and receives the result"
+    caption: "Setting modulation scheme in a CLI which communicates the parameters to the b210 and receives the result"
+    aspect: "1 / 1"
+    fit: contain
+  - type: image
+    src: "/images/research/rf-photonics-lab/3.png"
+    alt: "16-QAM constellation loopback on the B210"
+    caption: "16-QAM constellation loopback on the B210"
+    aspect: "2880 / 1800"
 ---
 
 ## 00.01 — Context
