@@ -2,7 +2,6 @@
 import Layout from '../../layouts/Layout.astro';
 import TickRule from '../../components/TickRule.astro';
 import CoordLine from '../../components/CoordLine.astro';
-import Badge from '../../components/Badge.astro';
 import HeroMedia from '../../components/HeroMedia.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
@@ -17,7 +16,7 @@ export async function getStaticPaths() {
 interface Props { entry: CollectionEntry<'projects'> }
 const { entry } = Astro.props;
 const { Content } = await entry.render();
-const { title, date, status, role, tools, summary, repo, media } = entry.data;
+const { title, date, role, tools, summary, repo, media } = entry.data;
 const year = date.getFullYear();
 
 const repoLabel = repo?.replace(/^https?:\/\//, '');
@@ -54,9 +53,7 @@ function mediaLabel(i: number) {
         </p>
 
         <div class="flex flex-col gap-4 mb-12">
-          {status !== 'complete' && <Badge status={status} />}
           <div class="meta-cluster">
-            {status === 'complete' && <span>STATUS / COMPLETE</span>}
             <span>YEAR / {year}</span>
             <span>ROLE / {role}</span>
             <span>TOOLS / {tools.join(', ')}</span>

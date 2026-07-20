@@ -1,7 +1,6 @@
 ---
 title: "Motion Detection Over WiFi"
 date: 2026-07-05
-status: "in-progress"
 role: "everything — firmware, host detector"
 tools: ["ESP32", "C", "Python"]
 summary: "Motion detection with no motion sensor: an ESP32 reads WiFi Channel State Information — how a room's multipath distorts each subcarrier — and flags people moving through it."

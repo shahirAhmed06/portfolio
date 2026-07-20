@@ -1,7 +1,6 @@
 ---
 title: "A RISC-V Computer From Scratch"
 date: 2026-07-09
-status: "in-progress"
 role: "everything — RTL, SoC, toolchain, runtime"
 tools: ["Verilog", "Icarus Verilog", "Yosys", "nextpnr", "riscv-none-elf-gcc"]
 summary: "A complete RV32I CPU and SoC in ~700 lines of Verilog — passes all 41 official RISC-V instruction tests and runs C compiled with stock GCC."

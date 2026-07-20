@@ -1,7 +1,6 @@
 ---
 title: "Inertial Measurement Unit"
 date: 2025-11-15
-status: "complete"
 role: "PCB design"
 tools: ["Altium Designer"]
 summary: "A six-axis IMU breakout board designed end-to-end in Altium — schematic, layout, BOM."

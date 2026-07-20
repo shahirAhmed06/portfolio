@@ -1,7 +1,6 @@
 ---
 title: "Automated Satellite Ground Station"
 date: 2026-07-09
-status: "in-progress"
 role: "everything — prediction, scheduling, capture pipeline"
 tools: ["Python", "Skyfield", "RTL-SDR", "SatDump"]
 summary: "A ground station that predicts Meteor-M weather-satellite passes and autonomously captures their 137.9 MHz imagery downlink — pictures of Earth, received in the yard."

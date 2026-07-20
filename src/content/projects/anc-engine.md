@@ -1,7 +1,6 @@
 ---
 title: "Active Noise Cancellation Engine"
 date: 2026-06-11
-status: "complete"
 role: "everything — firmware, test bench, audio bridge"
 tools: ["C", "Python"]
 summary: "A fixed-point Filtered-x LMS noise-cancellation engine in C — −34 dB at the 50 ms deadline, certified by a bit-reproducible test bench that drives the real compiled firmware."

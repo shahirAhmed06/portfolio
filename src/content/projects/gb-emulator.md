@@ -1,7 +1,6 @@
 ---
 title: "Cycle-Accurate Game Boy Emulator"
 date: 2026-07-01
-status: "complete"
 role: "everything — core, PPU, APU, debugger"
 tools: ["C++", "SDL2"]
 summary: "An emulator for the original Game Boy, stepped one T-cycle at a time — 34/34 Blargg tests, pixel-perfect dmg-acid2, and 91 of 93 Mooneye hardware-accuracy tests."

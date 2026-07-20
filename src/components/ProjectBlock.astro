@@ -1,5 +1,4 @@
 ---
-import Badge from './Badge.astro';
 import HeroMedia from './HeroMedia.astro';
 
 interface HeroImage { type: 'image'; src: string; alt: string; caption?: string }
@@ -10,7 +9,6 @@ interface Props {
   index: number;
   title: string;
   summary: string;
-  status: 'complete' | 'in-progress' | 'ongoing';
   role: string;
   tools: string[];
   date: Date;
@@ -26,7 +24,6 @@ const {
   index,
   title,
   summary,
-  status,
   role,
   tools,
   date,
@@ -71,17 +68,7 @@ const gridCols = renderHero
       {num}
     </span>
     <div class="flex flex-col gap-1">
-      {status === 'complete' ? (
-        <>
-          <span class="font-mono text-micro uppercase text-fg-muted">Complete</span>
-          <span class="font-mono text-micro uppercase text-fg-muted">{year}</span>
-        </>
-      ) : (
-        <>
-          <Badge status={status} />
-          <span class="font-mono text-micro uppercase text-fg-muted mt-1">{year}</span>
-        </>
-      )}
+      <span class="font-mono text-micro uppercase text-fg-muted">{year}</span>
     </div>
   </div>
 

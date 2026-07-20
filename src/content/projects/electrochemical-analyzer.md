@@ -1,7 +1,6 @@
 ---
 title: "Electrochemical Analyzer"
 date: 2026-06-20
-status: "in-progress"
 role: "everything — library, GUI, CLI"
 tools: ["Python", "PySide6", "NumPy", "SciPy"]
 summary: "A tested Python package, GUI, and CLI for analyzing potentiostat voltammetry data — CV, DPV, FS-CV, and Tafel — built to replace the manual macro-plus-Origin workflow I use in lab."
