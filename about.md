@@ -16,6 +16,7 @@ Outside all of that I love building. So far I have a RISC-V processor in Verilog
 
 **Contact**
 
+- [ahmeds60@msu.edu](mailto:ahmeds60@msu.edu)
 - [ahmeds2609@gmail.com](mailto:ahmeds2609@gmail.com)
 - GitHub — [github.com/shahirAhmed06](https://github.com/shahirAhmed06)
 - LinkedIn — [linkedin.com/in/ahmeds60](https://linkedin.com/in/ahmeds60)
