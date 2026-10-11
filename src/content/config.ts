@@ -30,6 +30,8 @@ const projects = defineCollection({
     summary: z.string(),
     repo: z.string().url().optional(),
     media: z.array(mediaItem).default([]),
+    // 'wide' renders media full-width under the title, writeup below; 'sidebar' is the default
+    mediaLayout: z.enum(['sidebar', 'wide']).default('sidebar'),
     draft: z.boolean().default(false),
   }),
 });

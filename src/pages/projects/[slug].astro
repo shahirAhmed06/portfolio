@@ -16,7 +16,8 @@ export async function getStaticPaths() {
 interface Props { entry: CollectionEntry<'projects'> }
 const { entry } = Astro.props;
 const { Content } = await entry.render();
-const { title, date, role, tools, summary, repo, media } = entry.data;
+const { title, date, role, tools, summary, repo, media, mediaLayout } = entry.data;
+const wide = mediaLayout === 'wide' && media.length > 0;
 const year = date.getFullYear();
 
 const repoLabel = repo?.replace(/^https?:\/\//, '');
@@ -32,7 +33,7 @@ function mediaLabel(i: number) {
 >
   <TickRule />
 
-  <div class="mx-auto max-w-container px-6 sm:px-8 pt-16 pb-28">
+  <div class:list={['mx-auto max-w-container px-6 sm:px-8 pt-16 pb-28', { 'detail-page--wide': wide }]}>
     <div class="mb-10">
       <a href="/projects" class="btn-ghost">← BACK TO PROJECTS</a>
     </div>
@@ -46,7 +47,15 @@ function mediaLabel(i: number) {
       {title}<span class="text-accent">.</span>
     </h1>
 
-    <div class:list={['detail-layout', { 'detail-layout--no-media': media.length === 0 }]}>
+    <div class:list={['detail-layout', { 'detail-layout--no-media': media.length === 0, 'detail-layout--wide': wide }]}>
+      {wide && (
+        <div class="flex flex-col gap-6">
+          {media.map((item, i) => (
+            <HeroMedia hero={item} aspectRatio="16/9" label={mediaLabel(i)} showCaption />
+          ))}
+        </div>
+      )}
+
       <div class="detail-main">
         <p class="font-mono text-lede text-fg-secondary m-0 mb-8 max-w-ch60">
           {summary}
@@ -78,7 +87,7 @@ function mediaLabel(i: number) {
         </div>
       </div>
 
-      {media.length > 0 && (
+      {media.length > 0 && !wide && (
         <aside class="detail-media flex flex-col gap-6">
           {media.map((item, i) => (
             <HeroMedia hero={item} aspectRatio="16/9" label={mediaLabel(i)} showCaption />
@@ -96,10 +105,30 @@ function mediaLabel(i: number) {
     gap: 3rem;
   }
   @media (min-width: 1024px) {
-    .detail-layout:not(.detail-layout--no-media) {
+    .detail-layout:not(.detail-layout--no-media):not(.detail-layout--wide) {
       display: grid;
       grid-template-columns: minmax(0, 1fr) 400px;
       column-gap: 3rem;
+      align-items: start;
+    }
+  }
+
+  /* mediaLayout: wide — picture on the left at the same width it has when stacked,
+     writeup to its right. Side by side only when the viewport fits both; narrower
+     screens keep the stacked layout so the picture never shrinks. */
+  .detail-page--wide {
+    --wide-media: calc(1200px - 4rem); /* max-w-container minus sm:px-8 padding */
+    --wide-gap: 3rem;
+    --wide-text: 31.5rem;              /* 60ch of the 0.875rem mono prose */
+  }
+  @media (min-width: 1752px) {          /* --wide-media + --wide-gap + --wide-text + 4rem padding */
+    .detail-page--wide {
+      max-width: calc(var(--wide-media) + var(--wide-gap) + var(--wide-text) + 4rem);
+    }
+    .detail-layout--wide {
+      display: grid;
+      grid-template-columns: var(--wide-media) minmax(0, 1fr);
+      column-gap: var(--wide-gap);
       align-items: start;
     }
   }
